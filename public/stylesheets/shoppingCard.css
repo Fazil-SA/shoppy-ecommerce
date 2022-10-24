@@ -1,0 +1,129 @@
+.card { 
+    /* for codepen */
+    border:none;
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+  }
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+  /* .card-img-top { background-color: grey; }
+  img {
+    border-radius: 50%;
+    margin: 20px 0;
+  } */
+  /* .card-text{
+    font-size: 20px;
+    font-weight: 800;
+    color: #ed5153;
+    margin: 0;
+  } */
+    .card-body{
+        position: relative;
+    }
+  
+  .btn {
+    position: absolute;
+    top: -17px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius:50%;
+    padding: 0;
+    background-color: #ed5153;
+    border-color: #ed5153;
+    color: #fff;
+  }
+  
+  .btn:hover {
+    background-color: #dc3032;
+    border-color: #dc3032; 
+    color: #fff;
+  }
+  
+  .btn:focus {
+    box-shadow: none;
+  }
+  
+  .target {
+    color: #dc3032;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top:0;
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  .wrapper {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    top: auto;
+  }
+  .shop {
+    position: relative;
+    top:0;
+    left:0;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+  }
+/*   
+  .wrapper.active .target { animation: fall cubic-bezier(0.6, 0.04, 0.98, 0.335) .3s, opacity ease .3s; }
+  .wrapper.active .shop { animation: bump ease .2s .4s ; }
+  .wrapper.active::after { animation: marker ease .2s .4s ; }
+  .wrapper::before {
+    content:'';
+    height: 65px;
+    width: 65px;
+    position: absolute;
+    display: flex;
+    border-radius: 50%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .wrapper.active::before { animation: ripple ease .3s .4s;}
+  
+  .wrapper.marked::after {
+    content:'';
+       display: block;
+    position: absolute;
+    top: 3px;
+    right:3px;
+    width: 15px;
+    height: 15px;
+    background-color: #dc3032;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    z-index: 100;
+  }
+  @keyframes ripple { 
+      0% { border: 4px solid #dc3032; visibility: visible;  opacity: 1; }
+      100% { border: 4px solid #dc3032; opacity: 0; width: 120px; height: 120px; }
+  }
+  
+  @keyframes fall {
+    0%{
+        opacity: 1;
+    }
+      100% {
+        transform: translateY(0);
+        transform: scale(2);
+        opacity: 1;
+      }
+  }
+  
+  @keyframes bump {
+      50% {
+        height: 58px;
+        width: 62px;
+        transform: translateY(20px);
+      }
+  }
+  @keyframes marker {
+      50% {
+        transform: translateY(20px);
+      }
+  } */

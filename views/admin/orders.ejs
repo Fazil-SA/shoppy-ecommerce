@@ -1,0 +1,64 @@
+<%- include('../layout/header.ejs')  %> 
+
+<%- include('../partials/adminNav.ejs')  %> 
+   
+
+<!-- <section class="pt-3" style="text-align: center;">
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class="btn btn-lg btn-outline-dark" for="btnradio1">New</label>
+      
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+        <label class="btn btn-lg btn-outline-dark" for="btnradio2">Shipped</label>
+      
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+        <label class="btn btn-lg btn-outline-dark" for="btnradio3">Delivered</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+        <label class="btn btn-lg btn-outline-dark" for="btnradio3">Cancelled</label>
+    </div>
+</section> -->
+
+<section>
+
+
+  <div class="table-responsive p-5">
+        <table class="table table-hover" id="myTable">
+        <div class="table table-hover container"  >
+            <thead>
+              <tr>
+                <th scope="col">Date & Time</th>
+                <th scope="col">Order Id</th>
+                <th scope="col">Address</th>
+                <th scope="col">Method</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(i=0;i<newOrder.length;i++) { %> 
+              <tr>
+                <td><%= newOrder[i].date %></td>
+                <td><%= newOrder[i]._id %></td>
+                <td><%= newOrder[i].address.name %>  <%= newOrder[i].address.mobile %> <%= newOrder[i].address.address1 %> <%= newOrder[i].address.address2 %> <%= newOrder[i].address.city %> <%= newOrder[i].address.state %> <%= newOrder[i].address.zip %> </td>
+                <td><%= newOrder[i].method %></td>
+                <td>
+                    <a href="/admin_panel/order_management/view-order-product?id=<%= newOrder[i]._id  %> "><button  type="button" class="btn btn-warning">View Order</button></a>
+                </td>
+              </tr>
+            <% } %> 
+            </tbody>
+          </table>
+    </div>
+  </div>
+
+  
+</section>
+
+
+<script>
+$(document).ready( function () {
+  $('#myTable').DataTable();
+} );
+</script>
+
+<%- include('../layout/footer.ejs')  %> 

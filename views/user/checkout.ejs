@@ -1,0 +1,330 @@
+<%- include('../layout/header.ejs') %>
+    <%- include('../partials/userNav.ejs') %>
+
+        <div class=" container-fluid my-5 ">
+            <div class="row justify-content-center ">
+                <div class="col-xl-10">
+                    <div class="card shadow-lg ">
+                        <div class="row p-2 mt-3 justify-content-between mx-sm-2">
+                        </div>
+
+
+
+                        <div class="row justify-content-around">
+                            <div class="col-md-5">
+                                <div class="card border-0">
+                                    <div class="card-header pb-0">
+                                        <h2 class="card-title space ">Checkout</h2>
+                                        <p class="card-text text-muted mt-4  space">SHIPPING DETAILS</p>
+                                        <hr class="my-0">
+
+                                        <div class="">
+                                            <p class="card-text text-muted mt-4 mb-2  space">SELECT DELIVERY ADDRESS</p>
+                                        </div>
+
+                                        <form id="checkout-form">
+                                            <% for(let i=0; i<userAddress.address.length; i++) { %>
+
+                                                <div class="form-check mt-3">
+                                                    <input type="radio" class="form-check-input" id="radio1"
+                                                        name="selectedAddress" value="<%= i %> " required>
+                                                    <p class="display-address">
+                                                        <%= userAddress.address[i].name %>,
+                                                    </p>
+                                                    <p class="display-address">
+                                                        <%= userAddress.address[i].mobile %>,
+                                                    </p>
+                                                    <p class="display-address">
+                                                        <%= userAddress.address[i].address1 %>,
+                                                    </p>
+                                                    <p class="display-address">
+                                                        <%= userAddress.address[i].address2 %>,
+                                                    </p>
+                                                    <p class="display-address">
+                                                        <%= userAddress.address[i].city %>,
+                                                    </p>
+                                                    <p class="display-address">
+                                                        <%= userAddress.address[i].state %>,
+                                                    </p>
+                                                    <p class="display-address">
+                                                        <%= userAddress.address[i].zip %>
+                                                    </p>
+                                                    <label class="form-check-label" for="radio1"></label>
+                                                </div>
+                                                <% } %>
+
+                                                    <a href="/user_home/shopping-cart/checkout/add-new-address"
+                                                        style="text-decoration: none; color: blue;">
+                                                        <p>Add a new address</p>
+                                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="card border-0 ">
+                                    <div class="card-header card-2">
+                                        <p class="card-text text-muted mt-md-4 space">ORDER SUMMARY </p>
+                                        <hr class="my-2">
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <% for(let i=0; i<cartNum2.length; i++) { %>
+                                            <div class="row  justify-content-between">
+                                                <div class="col-auto col-md-7">
+                                                    <div class="media flex-column flex-sm-row">
+                                                        <img class=" img-fluid mb-2 mt-2"
+                                                            src="/image/<%= cartNum2[i].image1 %> " width="62"
+                                                            height="62">
+                                                        <div class="media-body  my-auto">
+                                                            <div class="row ">
+                                                                <div class="col-auto"><small class="text-muted">
+                                                                        <%= cartNum2[i].pname %>
+                                                                    </small></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class=" pl-0 flex-sm-col col-auto  my-auto">
+                                                    <h6 class="">
+                                                        <%= cartNum2[i].quantity %>
+                                                    </h6>
+                                                </div>
+                                                <div class=" pl-0 flex-sm-col col-auto  my-auto offerCross">
+                                                    <h6><b>₹ <%= cartNum2[i].price %></b></h6>
+                                                </div>
+                                                <div class=" pl-0 flex-sm-col col-auto  my-auto ">
+                                                    <h6><b>₹ <%= cartNum2[i].offerPrice %></b></h6>
+                                                </div>
+                                            </div>
+                                            <hr class="my-2">
+                                            <% } %>
+                                                <div class="row mt-3">
+                                                    <div class="col">
+                                                        <div class="row justify-content-between">
+                                                            <div class="col-4">
+                                                                <h6 class="mb-3"><b>Sub Total</b></h6>
+                                                            </div>
+                                                            <div class="flex-sm-col col-auto">
+                                                                <h6 id="totalPrice" class="mb-3"><b>₹ <%= totalPrice %>
+                                                                    </b></h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row justify-content-between">
+                                                            <div class="col">
+                                                                <h6 class="mb-3"><b>Shipping</b></h6>
+                                                            </div>
+                                                            <div class="flex-sm-col col-auto">
+                                                                <h6 class="mb-3" style="color: blue"><b>Free</b></h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <!-- <i class="fas fa-plus" onclick="applyCoupon()"></i> -->
+                                                            <div class="input-group"> <input type="text"
+                                                                    class="form-control coupon " id="checkoutCoupon"
+                                                                    name="checkoutCoupon" placeholder="Coupon code">
+                                                                <span class="input-group-append"> <button
+                                                                        onclick="applyCoupon()" type="button"
+                                                                        class="btn btn-primary btn-apply coupon">Apply</button>
+                                                                </span> </div>
+                                                        </div>
+                                                        <% if(validation.redeem){ %>
+                                                            <p style="color: red;">Coupon Already Redeemed</p>
+                                                        <% } %>
+                                                        <% if(validation.expired){ %>
+                                                            <p style="color: red;">Coupon Expired</p>
+                                                        <% } %>
+                                                        <% if(validation.criteria){ %>
+                                                            <p style="color: red;">Not meeted the minimum value criteria to apply this coupon</p>
+                                                        <% } %>
+                                                        <% if(validation.found){ %>
+                                                            <p style="color: red;">Coupon not found</p>
+                                                        <% } %>
+                                                        <p id="couponApplied" style="color: green;"></p>
+                                                        <hr class="my-2">
+                                                        <div class="row justify-content-between">
+                                                            <div class="col-4">
+                                                                <h6 class="mb-3">
+                                                                    <b>Total</b>
+                                                                </h6>
+                                                            </div>
+                                                            <div class="flex-sm-col col-auto">
+                                                                <input type="text" disabled style="display: none;" id="totalPrice111" value="<%= totalPrice %>">
+                                                                <div style="display: flex;">
+                                                                    <h6 class="mb-3">₹
+                                                                    </h6>
+                                                                    <h6 class="mb-3" value="<%= totalPrice %>" id="couponDiscountPrice">
+                                                                        <b>
+                                                                            <%= totalPrice %>
+                                                                        </b>
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" value="<%= totalPrice %>" name="orderValue">
+                                                        </div>
+                                                        </div>
+                                                </div>
+
+                                                <div class="">
+                                                    <p class="card-text text-muted mt-1 mb-2  space">SELECT PAYMENT
+                                                        OPTION</p>
+                                                    <!-- <p id="">hello</p> -->
+
+                                                </div>
+
+
+                                                <!-- <form action="/test" method="post"> -->
+                                                <!-- <button id="rzp-button1">Pay</button> -->
+                                                <!-- </form> -->
+
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input mt-5 mx-3" type="radio"
+                                                        value="razorpay" name="paymentType" id="flexRadioDefault1"
+                                                        required>
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        <img class=""
+                                                            src="https://upload.wikimedia.org/wikipedia/en/8/89/Razorpay_logo.svg"
+                                                            alt="" height="100" width="100">
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input  mx-3" type="radio" value="paypal"
+                                                        name="paymentType" id="flexRadioDefault2" required>
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                        <img src="https://pngimg.com/uploads/paypal/paypal_PNG15.png"
+                                                            alt="" height="30" width="100">
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input mt-4 mx-3" type="radio" value="cod"
+                                                        name="paymentType" id="flexRadioDefault3" required>
+                                                    <label class="form-check-label" for="flexRadioDefault3">
+                                                        <img class="mt-3"
+                                                            src="https://www.pngitem.com/pimgs/m/193-1939153_cod-cash-on-delivery-stamp-hd-png-download.png"
+                                                            alt="" height="40" width="80">
+                                                    </label>
+                                                </div>
+                                                <div class="row mb-5 mt-4 ">
+                                                    <div class="col-md-7 col-lg-6 mx-auto"><button type="submit"
+                                                            class="btn btn-block btn-outline-dark">Proceed to
+                                                            Payment</button></div>
+                                                </div>
+                                                </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            //totalprice also want to sent through this
+            function applyCoupon() {
+                console.log('coupon ajax working');
+                couponId = document.getElementById('checkoutCoupon').value
+                totalPrice = document.getElementById('totalPrice111').value
+                // console.log(totalPrice);
+                $.ajax({
+                    url: '/user_home/apply-coupon',
+                    data: { couponId: couponId, totalPrice: totalPrice },
+                    method: 'post',
+                    success: (response) => {
+                        if (response.change) {
+                            // console.log(response.couponDiscountedBill)
+                            document.getElementById('couponDiscountPrice').innerHTML = response.couponDiscountedBill
+                            document.getElementById('couponApplied').innerHTML = "Coupon Applied Successfully"
+                            // location.reload()
+                            // location.replace()
+                            console.log('Change Successfully')
+                        } else if (response.validation) {
+                            location.reload()
+                            console.log('Change Unsuccessful');
+                        }
+                    }
+                })
+            }
+
+
+            //Payment
+            $("#checkout-form").submit((e) => {
+                console.log("ajax working")
+                e.preventDefault()
+                $.ajax({
+                    url: '/user_home/shopping-cart/checkout/payment',
+                    method: 'post',
+                    data: $('#checkout-form').serialize(),
+                    success: (response) => {
+                        console.log("The response")
+
+                        if (response.codSuccess) {
+                            console.log("COD working")
+                            location.replace('/order-success')
+                            // window.open('/userhome/success')
+                        } else if (response.razorpay) {
+                            console.log("razorpay working")
+                            razorpayPayment(response.order)
+                        } else if (response.paypal) {
+                            console.log("calling the paypal")
+                            location.replace('/payment/paypal')
+                        }
+                    }
+                })
+            })
+
+            function razorpayPayment(order) {
+                console.log(order)
+                var options = {
+                    "key": "rzp_test_gNMlrzRmJW9STe", // Enter the Key ID generated from the Dashboard
+                    "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "Camper Trek",
+                    "description": "Test Transaction",
+                    "image": "/images/logo.png",
+                    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    "handler": function (response) {
+                        RazoverifyPayment(response, order)
+                    },
+                    "prefill": {
+                        "name": "Shoppy",
+                        "email": "shoppy@gmail.com",
+                        "contact": "+91 9745460637"
+                    },
+                    "notes": {
+                        "address": "Shoppy, Kazhakkoottam, Trivandrum"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                }
+
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+            }
+            function RazoverifyPayment(payment, order) {
+                location.replace('/payment-success')
+
+                $.ajax({
+                    url: '/userhome/razo-verify-payment',
+                    data: {
+                        payment,
+                        order
+                    },
+                    method: 'post',
+                    success: (response) => {
+                        if (response.status) {
+                            console.log("succes")
+                            location.href = '/orderSuccess'
+                        } else {
+                            // need to render payment faild page
+                            location.reload()
+                            alert("payment failed")
+                        }
+                    }
+                })
+            }
+
+        </script>
+
+        <%- include('../layout/footer.ejs') %>

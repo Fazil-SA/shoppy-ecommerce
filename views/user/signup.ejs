@@ -1,0 +1,63 @@
+<%- include('../layout/header.ejs')  %> 
+
+<section class="vh-80 gradient-custom">
+  <div class="mask d-flex align-items-center h-100 gradient-custom">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card bg-dark text-white" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <form method="post" action="/user_registration">
+                <% if(response.passMatch) { %> 
+                  <p class="text-danger"><%= response.passMatchErrMssg %> </p>
+                  <% } %> 
+                  <% if(response.userExist) { %> 
+                    <p class="text-danger"><%= response.userExistMssg %> </p>
+                    <% } %> 
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example1cg">Your Name</label>
+                  <input type="text" name="name" id="form3Example1cg" class="form-control form-control-lg" required />
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3cg">Your Email</label>
+                  <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" required />
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3cg">Phone</label>
+                    <input type="tel" name="phone" id="form3Example3cg" class="form-control form-control-lg" required />
+                  </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label"  for="form3Example4cg">Password</label>
+                  <input type="password" id="form3Example4cg" name="password" class="form-control form-control-lg" required />
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                  <input type="password" id="form3Example4cdg" name="confirmPassword" class="form-control form-control-lg" required />
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-outline-light btn-lg px-5">Register</button>
+                </div>
+
+              
+                <p class="text-center text-muted text-white mt-5 mb-0">Have already an account? <a href="/user_signin"
+                    class="fw-bold text-body"><u style="color: white;">Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../layout/footer.ejs')  %> 

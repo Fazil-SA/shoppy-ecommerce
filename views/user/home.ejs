@@ -1,0 +1,149 @@
+<%- include('../layout/header.ejs')  %> 
+
+<%- include('../partials/userNav.ejs')  %> 
+<link rel="stylesheet" href="../../stylesheets/shoppingCard.css">
+        <!-- Header-->
+        <!-- <header class="bg-warning py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-black">
+                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+                    <p class="lead fw-normal text-black-50 mb-0">with shoppy</p>
+                </div>
+            </div>
+        </header> -->
+        
+<!-- Background video -->
+<!-- <div class="video-background-holder ">
+    <div class="video-background-overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+          <source src="https://storage.coverr.co/videos/Nv4Gqow7scn9XalkdfhPSLNjwNWrYYpE?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6Ijg3NjdFMzIzRjlGQzEzN0E4QTAyIiwiaWF0IjoxNjMzMzkzNjUzfQ.EElJb38kbaq_0OTzJpPnInZjpR8pLDoxwLGskhuoBBc" type="video/mp4">
+      </video>
+    <div class="video-background-content container h-100">
+      <div class="d-flex h-100 text-center align-items-center">
+        <div class="w-100 text-white">
+          <h1 class="display-4 fw-bolder">Shop in style</h1>
+          <p class="lead fw-normal text-black-50 mb-0 fw-bolder">with shoppy</p> -->
+          <!-- <p class="lead mb-0">With shoppy</p> -->
+          <!-- <p class="lead">Go To <a href="https://bootstrapious.com/snippets" class="text-white">
+                      <u>Products</u></a> -->
+          <!-- </p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
+        <img src="https://img.freepik.com/free-photo/two-beautiful-women-shopping-town_1303-16426.jpg?w=2000" class="d-block w-100 rounded-5 p-2" alt="not loaded">
+        <div class="carousel-caption d-none d-md-block p-5" style="color: #f5eb6d;">
+            <h1 class="fw-bolder">SHOP IN STYLE WITH SHOPPY</h1>
+            <h3 class="fw-bolder">YOUR PERFECT SHOPPING PARTNER</h3>
+        </div>  
+    
+ 
+  <!-- End -->
+  <!-- <div class="video-background">
+    <video autoplay muted loop class="video">
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  </div>
+   -->
+  
+        <!-- Section-->
+        
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    
+      
+                    <% for(i=0;i<result.length;i++) { %> 
+ 
+                    <div class="col mb-5 col-sm-12 col-12">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem; cursor: pointer;">
+                               
+                                    <form action="/user_home/wishlist?id=<%= result[i]._id %>" method="post">
+                                        <div class="text-center"><button style="background-color: #212529;border: none;" type="submit"><i style="color: #ffc107;" class="fa-regular fa-heart"></i></button></div>
+                                    </form>
+
+                            </div>
+
+
+                            <a href="/user_home/product-view?id=<%= result[i]._id %> "><img class="card-img-top" src="/image/<%= result[i].image1 %>" alt="..."/></a>
+                            <!-- Product details-->
+                            <div class="card-body p-6">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <a style="text-decoration: none;color: black;" href="/user_home/product-view?id=<%= result[i]._id %>">
+                                        <h5 class="fw-bolder" ><%= result[i].pname %> </h5>
+                                    </a>
+                                    <!-- Product price-->
+                                    <div class="offerCross">
+                                        ₹ <%= result[i].price %> 
+                                    </div>
+                                    ₹ <%= result[i].offerPrice %> 
+                                </div>
+                                <div class="card-footer p-4 pt-0 bg-transparent">
+                                <form action="/user_home/add-to-cart?id=<%= result[i]._id %>" method="post">
+                                    <button type="submit" class="btn ripple-effect d-flex align-items-center justify-content-center bg-danger">
+                                        <i class="fas fa-cart-plus"></i>
+                                      </button>
+                                    <!-- <div class="text-center"><button type="submit" style="width: 100%;" class="btn btn-outline-dark mt-auto mb-2">Add to Cart</button></div> -->
+                                </form>
+                                <!-- <div class="text-center"><a style="width: 100%;" class="btn btn-outline-dark mt-auto" href=''>Buy Now</a></div> -->
+                            </div>
+                            </div>
+                            <div class="wrapper">
+                                <button class="btn shop d-flex align-items-center justify-content-center">
+                                  <a href="/user_home/shopping-cart"><i class="fas fa-cart-plus"></i></a>
+                                </button>
+                                <div class="target d-flex align-items-center justify-content-center"><i class="fas fa-box"></i></div>
+                              </div>
+                            <!-- Product actions-->
+                            
+                        </div>
+                    </div>
+                    
+                    <% } %> 
+        </section>
+        
+            <section class="">
+                <!-- Footer -->
+                <footer class="bg-secondary text-white">
+          
+            
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                        © 2022 Copyright: Shoppy || Made By Fazil
+                    </div>
+                    <!-- Copyright -->
+                </footer>
+                <!-- Footer -->
+            </section>
+        
+
+
+<script>
+    
+var elements = document.querySelectorAll('.ripple-effect');
+
+for (var i = 0; i < elements.length; i++) {
+  elements[i].addEventListener("click", function (e) { 
+    
+    e.preventDefault;
+    var elm =  document.querySelector('.wrapper');
+    
+    if(elm.className  !== 'marked')
+      elm.classList.add('marked');
+       
+    
+    elm.classList.remove("active");
+    void elm.offsetWidth;
+    elm.classList.add("active");
+  });
+}
+</script>
+
+
+
+<%- include('../layout/footer.ejs')  %> 

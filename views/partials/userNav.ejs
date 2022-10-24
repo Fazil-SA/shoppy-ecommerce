@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg p-2 text-dark bg-opacity-50 rounded-5 border-5">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bolder" href="/user_home">SHOPPY</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user_home">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user-category?category=Men">Men</a>
+        </li>
+        <li class="nav-item ml-5">
+          <a class="nav-link active" aria-current="page" href="/user-category?category=Ladies">Ladies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user-category?category=Kids">Kids</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user-category?category=Beauty">Beauty</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/user-category?category=Sportswear">Sportswear</a>
+        </li>
+
+        <!-- <div class="topnav">
+          <div class="search-container">
+            <form action="/">
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </div> -->
+
+
+      </ul>
+
+      <form class="d-flex">
+        <!-- <button class="btn btn-outline-dark" type="submit"> -->
+              <a href="/user_home/shopping-cart"><i class="fa fa-shopping-cart me-3 my-auto"></i><span class='badge badge-warning' id='lblCartCount'> <%= cartNum2.length %>  </span></a> 
+
+        
+        <a href="/user_home/wishlist"><i class="fa fa-heart me-3 my-auto"></i></a>
+        <a href="/user_home/profile"><i class="fa fa-user me-3 my-auto"></i></a>
+        <i class="fa fa-sign-out me-3 my-auto" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+
+
+        <!-- </button> -->
+
+
+
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want to logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="/user_logout"><button type="button" class="btn btn-warning">Logout</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>

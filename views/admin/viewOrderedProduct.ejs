@@ -1,0 +1,105 @@
+<%- include('../layout/header.ejs')  %> 
+
+<%- include('../partials/adminNav.ejs')  %> 
+
+<div class="container">
+<div class="btn-group pt-5 contact">
+  <a class="btn btn-primary dropdown-toggle mb-2" data-bs-toggle="dropdown" aria-expanded="false">
+      Download
+  </a>
+  <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/admin/exportExcel">Excel</a></li>
+      <li><button class="dropdown-item" onclick="myfun('pt')">Pdf</button></li>
+
+  </ul>
+</div>
+
+  <div class="table-responsive">
+
+    <div class="table-wrap" id="pt">
+
+        <table class="table table-hover" id="usertable">
+
+          <div class="table table-hover container"  >
+            <thead>
+              <tr>
+                    <th scope="col">Product Id</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Offer Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(i=0;i<viewOrder.orderDetails.length;i++) { %> 
+              <tr>
+                <td><%= viewOrder.orderDetails[i].productId %> </td>
+                <td><%= viewOrder.orderDetails[i].price %> </td>
+                <td><%= viewOrder.orderDetails[i].offerPrice %></td>
+                <td><%= viewOrder.orderDetails[i].category  %></td>
+                <td>
+                    <img id="main-image" src="/image/<%= viewOrder.orderDetails[i].image1 %>" style="width: 5rem;height: 5rem;" alt="">
+                </td>
+                <td><%= viewOrder.orderDetails[i].quantity %></td>
+                <td style="font-weight: 600;"><%= viewOrder.orderDetails[i].orderStatus %></td>
+                <td>
+                        <% if(viewOrder.orderDetails[i].orderStatus == "New") { %> 
+                        <form action="/orderAcceptButton?id=<%= viewOrder._id %>&prodId=<%= viewOrder.orderDetails[i].productId %>  " method="post">
+                            <button  type="submit" class="btn btn-success">Mark as Accepted</button>
+                        </form>
+                        <a href="/cancelProductOrder?id=<%= viewOrder._id %>&prodId=<%= viewOrder.orderDetails[i].productId %>"><button type="button" onclick="return confirm('Are you sure to cancel this order')"  class="btn btn-danger mt-1">Cancel Order</button></a>
+                        <% } else if (viewOrder.orderDetails[i].orderStatus == "Proceeding") { %> 
+                        <form action="/shipOrderButton?id=<%= viewOrder._id %>&prodId=<%= viewOrder.orderDetails[i].productId %>  " method="post">
+                            <button type="submit"  class="btn btn-success m-1">Mark as Shipped</button>
+                        </form>
+                        <% } else if (viewOrder.orderDetails[i].orderStatus == "Shipped") {%>  
+                        <form action="/completeOrderButton?id=<%= viewOrder._id %>&prodId=<%= viewOrder.orderDetails[i].productId %>  " method="post">
+                            <button type="submit"  class="btn btn-success m-1">Mark as Delivered</button>
+                        </form>
+                        <% } else if  (viewOrder.orderDetails[i].orderStatus == "Delivered") { %>
+                            <!-- <i style="color: green;" class="fa fa-check fa-3x" aria-hidden="true"></i> -->
+                            <h6 style="color: green;">Completed</h6>
+                        <% }else { %>
+                            <!-- <i style="color: red;" class="fa-solid fa-xmark fa-3x"></i> -->
+                            <h6 style="color: red;">Cancelled</h6>
+                        <% } %>   
+                        
+                      
+                    
+                </td>
+              </tr>
+            <% } %> 
+            </tbody>
+          </table>
+        </div>
+        </div>
+  </div>
+
+</div>
+</section>
+
+<!-- <script>
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  } ); -->
+  <!-- </script> -->
+
+<script>
+  console.log("script working")
+  function myfun(pt) {
+      var bk = document.body.innerHTML;
+      var dv = document.getElementById('pt').innerHTML;
+      document.body.innerHTML = dv;
+      document.body.style.padding = "20px"
+      window.print();
+      location.reload();
+  }
+  $(document).ready(function () {
+      $('#usertable').DataTable()
+  });
+</script>
+
+<%- include('../layout/footer.ejs')  %> 

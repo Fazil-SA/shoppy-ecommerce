@@ -1,0 +1,49 @@
+<%- include('../layout/header.ejs')  %> 
+
+<div class="jumbotron text-center">
+    <h1 class="display-3">Continue To Proceed!</h1>
+    <p class="lead"><strong>You are few more steps away from order</strong></p>
+    <hr>
+    <p>
+      Having trouble? <a href="">Contact us</a>
+    </p>
+    <p class="lead">
+        <button class="btn btn-primary btn-sm" id="rzp-button1">Continue</button>
+    </p>
+  </div>
+
+
+
+<script>
+ axios.post('/payment/razorpay').then((info) => {
+    console.log(info)
+var options = {
+    "key": "rzp_test_IZBmJkPqdMsnrQ", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": info.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+})   
+
+</script>
+<%- include('../layout/footer.ejs')  %> 

@@ -1,0 +1,53 @@
+<%- include('../layout/header.ejs') %> 
+<%- include('../partials/adminNav.ejs') %> 
+
+
+
+    <div class="container">
+        <section class="">
+  
+            <div class="col-lg-6 mb-5 p-5 mb-lg-0 mx-auto">
+              <div class="card">
+                <div class="card-body py-5 px-md-5">
+                  <form action="/admin_panel/category-management" method="post">
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row">
+                      <div class="col-md-12 mb-4">
+                        <div class="form-outline">
+                          <input type="text" name="category" id="form3Example1" class="form-control" placeholder="Category"/>
+                        </div>
+                      </div>
+    
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                      Add Category
+                    </button>
+    
+                  </form>
+                
+    </section>
+        <table class="table table-responsive" id="myTable">
+            <thead>
+                <tr>
+                  <th scope="col">Categories</th>
+                </tr>
+              </thead>
+              <tbody>
+                <td>
+                <% for(let i=0;i<categories.category.length;i++) { %>
+                  <div style="display: flex;">
+                    <span style="font-weight: 700;" class="col-md-12 d-flex"><%= categories.category[i] %></span>
+                    <a href="/admin_panel/category-management/delete-category?id=<%= categories.category[i] %> "><button type="button" onclick="return confirm('Are you sure to delete this category')" class="btn btn-light m-1"><i style="color: red;" class="fa-solid fa-xmark fa-1x"></i></button></a>
+                  </div>
+                <% } %> 
+                </td>
+                </tbody>
+          </table>
+      </div>
+      <script>
+        $(document).ready( function () {
+          $('#myTable').DataTable();
+        } );
+        </script>
+
+<%- include('../layout/footer.ejs') %> 

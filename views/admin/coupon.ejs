@@ -1,0 +1,80 @@
+<%- include('../layout/header.ejs') %> 
+<%- include('../partials/adminNav.ejs') %> 
+
+
+
+    <div class="container">
+        <section class="">
+  
+            <div class="col-lg-6 mb-5 p-5 mb-lg-0 mx-auto">
+              <div class="card">
+                <div class="card-body py-5 px-md-5">
+                  <form action="/admin_panel/coupon-management" method="post">
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row">
+                      <div class="col-md-12 mb-4">
+                        <div class="form-outline">
+                          <label for="" class="mb-2 fw-semibold">Coupon Name</label>
+                          <input type="text" name="coupon" id="form3Example1" class="form-control" placeholder="Coupon"/>
+                          <label for="" class="mb-2 fw-semibold">Minimum Value</label>
+                          <input type="text" name="minimumValue" id="form3Example1" class="form-control" placeholder="Coupon only valid above this value"/>
+                          <label for="" class="mb-2 fw-semibold">Discount Value</label>
+                          <input type="text" name="discountValue" id="form3Example1" class="form-control" placeholder="discount"/>
+                          <label for="" class="mt-2 fw-semibold">Coupon Activation Date</label>
+                          <input type="datetime-local" name="activationTime" id="form3Example1" class="form-control mt-2" placeholder="Coupon valid from"/>
+                          <label for="" class="mt-2 fw-semibold">Coupon Expiry Date</label>
+                          <input type="datetime-local" name="expirationTime" id="form3Example1" class="form-control mt-2" placeholder="Coupon valid till"/>
+                      </div>
+    
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4 mt-2">
+                      Add Coupon
+                    </button>
+    
+                  </form>
+                
+    </section>
+        <table class="table table-responsive" id="myTable">
+            <thead>
+                <tr>
+                  <th >Coupon Name</th>
+                  <th >Minimum Value</th>
+                  <th >Discount Value</th>
+                  <th >Activation Date</th>
+                  <th>Expiration Date</th>
+                  <th>Cancel Coupon</th>
+                </tr>
+              </thead>
+              <% for(let i=0;i<coupon.length;i++) { %>
+              <tbody>
+                <td>
+                  <div style="display: flex;">
+                    <%= coupon[i].couponName %>
+                  </div>
+                </td>
+                <td>
+                    <%= coupon[i].minimumValue %>
+                </td>
+                <td>
+                    <%= coupon[i].discountValue %>
+                </td>
+                <td>
+                    <%= coupon[i].activationDate %>
+                </td>
+                <td>
+                    <%= coupon[i].expirationDate %>
+                </td>
+                <td>
+                    <a href="/admin_panel/coupon-management/delete-coupon?id=<%= coupon[i]._id %> "><button onclick="return confirm('Are you sure to delete this coupon')" type="button" class="btn btn-light m-1"><i style="color: red;" class="fa-solid fa-xmark fa-1x"></i></button></a>
+                </td>
+                </tbody>
+                <% } %> 
+          </table>
+      </div>
+      <script>
+        $(document).ready( function () {
+          $('#myTable').DataTable();
+        } );
+        </script>
+
+<%- include('../layout/footer.ejs') %> 

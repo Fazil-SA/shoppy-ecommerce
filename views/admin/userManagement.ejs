@@ -1,0 +1,56 @@
+<%- include('../layout/header.ejs')  %> 
+
+<%- include('../partials/adminNav.ejs')  %> 
+
+<div class="table-responsive p-5">
+  <table class="table table-hover" id="myTable">
+    <div class="table table-hover container"  >
+      <thead>
+        <tr>
+          <th scope="col">Sl No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Photo</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+          <% for(let i=0;i<docs.length;i++) { %> 
+        <tr>
+          <th scope="row"><%= num++ %> </th>
+          <td><%= docs[i].name %> </td>
+          <td><%= docs[i].email %></td>
+          <td><%= docs[i].phone %></td>
+          <td>--</td>
+          <td>
+            <% if(docs[i].blockStatus) { %> 
+              <form action="/user/unblock?id=<%= docs[i]._id %>" method="post">
+                <button type="submit" onclick="return confirm('<%= docs[i].name %> Will be Unblocked')" class="btn btn-info">Unblock</button>
+              </form>
+              <% } else { %> 
+                <form action="/user/block?id=<%= docs[i]._id %>" method="post">
+                  <button type="submit" onclick="return confirm('<%= docs[i].name %> will be Blocked')" class="btn btn-danger">Block</button>
+                </form>
+              
+              <% } %> 
+            </td>
+        </tr>
+        <% } %> 
+        
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  } );
+  </script>
+
+
+<%- include('../layout/footer.ejs')  %> 
+
+

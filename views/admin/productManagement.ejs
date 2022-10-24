@@ -1,0 +1,91 @@
+<%- include('../layout/header.ejs')  %> 
+
+<%- include('../partials/adminNav.ejs')  %> 
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 col-lg-2">
+          <a href="/admin_panel/product_management/add-product"><button class="btn btn-primary  btn-block" type="button">Add Product</button></a>
+        </div>
+      </div>
+  </div>  
+
+  <div class="table-responsive container">
+    <table class="table" id="myTable">
+        <div class="table table-hover container"  >
+            <thead>
+              <tr>
+                <th scope="col">Sl No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Offer Price</th>
+                <th scope="col">Description</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Category</th>
+                <!-- <th scope="col">Sub-Category</th> -->
+                <th scope="col">Main Img</th>
+                <th scope="col">Side Img</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(i=0;i<docs.length;i++) { %> 
+              <tr>
+                <th scope="row"><%= num++  %> </th>
+                <td><%= docs[i].pname %></td>
+                <td><%= docs[i].price %></td>
+                <td><%= docs[i].offerPrice %></td>
+                <td><%= docs[i].description %></td>
+                <td><%= docs[i].stock %></td>
+                <td><%= docs[i].category %></td>
+                <!-- <td><%=// docs[i].subCategory %></td> -->
+                <td>
+                  <img id="main-image" src="/image/<%= docs[i].image1 %>"  style="width: 5rem;height: 5rem;" alt="">
+                </td>
+                <td>
+                  <img id="main-image" src="/image/<%= docs[i].image2 %>"  style="width: 5rem;height: 5rem;" alt="">
+                <td>
+                  <a href="/admin_panel/editProduct?id=<%=  docs[i]._id  %>  ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </a>
+                  <!-- <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="/admin_panel/deleteProduct?id=<%= docs[i]._id %> "> -->
+                  <a onclick="return confirm('Are You sure to delete this product?')" href="/admin_panel/deleteProduct?id=<%= docs[i]._id %> ">
+
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+            <% } %> 
+            </tbody>
+          </table>
+        </div>
+  </div>
+ <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete this product ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Sure</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+ 
+  <script>
+    $(document).ready( function () {
+      $('#myTable').DataTable();
+    } );
+    </script>
+ 
+
+<%- include('../layout/footer.ejs')  %> 
+
+
