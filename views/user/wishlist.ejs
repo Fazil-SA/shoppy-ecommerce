@@ -30,7 +30,8 @@
                     </div>
                     
                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0">₹ <%= wishlist[i].item[0].price  %></h6>
+                      <h6 class="mb-0 offerCross">₹ <%= wishlist[i].item[0].price  %></h6>
+                      <h6 class="mb-0">₹ <%= wishlist[i].item[0].offerPrice  %></h6>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                       <form action="/user_home/add-to-cart?id=<%= wishlist[i].item[0]._id %>" method="post">
