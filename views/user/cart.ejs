@@ -51,9 +51,9 @@
         <h6 class="mb-0 sumDisplay"><//%= result[i].price  %></h6>
       </div> -->
       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-        <h6 class="mb-0 offerCross">Price : ₹<%= result[i].price  %></h6>
-        <br>
-        <h6 class="mb-0">Offer Price : ₹ <%= result[i].offerPrice  %></h6>
+        <h6 class="mb-0">Price : ₹<span class="offerCross"><%= result[i].price  %></span></h6>
+        <!-- <br> -->
+        <h6 class="mb-0">₹<%= result[i].offerPrice  %></h6>
         <hr>
         <h6 class="mb-0">Total : <%= total  %></h6>
       </div>
