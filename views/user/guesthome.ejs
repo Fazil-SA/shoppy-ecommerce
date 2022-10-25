@@ -1,3 +1,7 @@
+
+
+
+
 <%- include('../layout/header.ejs')  %> 
 
 <%- include('../partials/guestUserNavbar.ejs')  %> 
@@ -63,7 +67,7 @@
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem; cursor: pointer;">
                                
                                     <form action="/user_home/wishlist?id=<%= result[i]._id %>" method="post">
-                                        <div class="text-center"><button style="background-color: #212529;border: none;" type="submit"><i style="color: #ffc107;" class="fa-regular fa-heart"></i></button></div>
+                                        <div class="text-center"><button class="wishlistButton" type="submit"><i style="color: #ffc107;" class="fa-regular fa-heart"></i></button></div>
                                     </form>
 
                             </div>
@@ -83,9 +87,9 @@
                                     </div>
                                     ₹ <%= result[i].offerPrice %> 
                                 </div>
-                                <div class="card-footer p-4 pt-0 bg-transparent">
+                                <div class="p-4 pt-0 bg-transparent">
                                 <form action="/user_home/add-to-cart?id=<%= result[i]._id %>" method="post">
-                                    <button type="submit" class="btn ripple-effect d-flex align-items-center justify-content-center bg-danger">
+                                    <button type="submit" class="btn-cart ripple-effect d-flex align-items-center justify-content-center bg-danger">
                                         <i class="fas fa-cart-plus"></i>
                                       </button>
                                     <!-- <div class="text-center"><button type="submit" style="width: 100%;" class="btn btn-outline-dark mt-auto mb-2">Add to Cart</button></div> -->
@@ -94,8 +98,8 @@
                             </div>
                             </div>
                             <div class="wrapper">
-                                <button class="btn shop d-flex align-items-center justify-content-center">
-                                  <a href="/user_home/shopping-cart"><i class="fas fa-cart-plus"></i></a>
+                                <button class="btn-cart shop d-flex align-items-center justify-content-center">
+                                  <a style="color: white;" href="/user_home/shopping-cart"><i class="fas fa-cart-plus"></i></a>
                                 </button>
                                 <div class="target d-flex align-items-center justify-content-center"><i class="fas fa-box"></i></div>
                               </div>
