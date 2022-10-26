@@ -184,6 +184,7 @@ exports.userLogout = (req, res) => {
     req.session.userId = ""
     req.session.orderValue = ""
     req.session.phone = ""
+    req.session.otplogin = ''
     res.redirect('/user_signin')
 }
 
