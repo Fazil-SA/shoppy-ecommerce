@@ -183,6 +183,7 @@ exports.userLogout = (req, res) => {
     // req.session.destroy()
     req.session.userId = ""
     req.session.orderValue = ""
+    req.session.phone = ""
     res.redirect('/user_signin')
 }
 
