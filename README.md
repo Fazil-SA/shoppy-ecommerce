@@ -5,17 +5,17 @@ Utilized Node.js & Express.js for backend , MongoDB as the database , HTML & CSS
 Implemented dynamic pages using EJS to enhance the user experience
 
 Key Features:
-Signup/Login with email and OTP with validation
-Admin authentication
-Category management
-Product view
-Cart management
-Order Management
-Coupon Management
-Payment gateway integration - Razorpay & Paypal
-Address Management
-Cash On Delivery
-Profile Management
+Signup/Login with email and OTP with validation || 
+Admin authentication || 
+Category management || 
+Product view || 
+Cart management || 
+Order Management || 
+Coupon Management || 
+Payment gateway integration - Razorpay & Paypal || 
+Address Management || 
+Cash On Delivery || 
+Profile Management || 
 Sales Report
 
 ## Installation
